@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block username %}
+{{username}}
+{% endblock %}
+
+{% block title %}
+{{page_name|title}}
+{% endblock %}
+
+
+{% block header %}
+{{page_name|upper}}
+{% endblock %}
+
+{% block quickbutton %}
+<button onclick="gotoAddProduct('{{session_id}}')" class="quickbutton">+ Add Product</button>
+{% endblock %}
+
+{% block main_cards %}
+
+{% for product in products %}
+
+{% if product.current_cartons <= product.alarming_stock_level %} <div
+    style="background-color: rgb(185, 70, 66);color: rgb(255, 255, 255);" class="card">
+    {% else %}
+    <div class="card">
+        {% endif %}
+
+
+        <div class="action-panel">
+            <span onclick="editProduct('{{product.product_id}}','{{session_id}}')" class="edit-icon-item"></span>
+            <span onclick="deleteProduct('{{product.product_id}}','{{session_id}}')" class="delete-icon-item"></span>
+        </div>
+
+        <h2>{{ product.product_name }}</h2>
+
+        <p><strong>Brand:</strong> {{ product.brand }}</p>
+        <p><strong>Pieces per Carton:</strong> {{ product.pieces_per_carton }}</p>
+        <p><strong>Price per Carton:</strong> {{ product.price_carton }}</p>
+        <p><strong>Selling price per Carton:</strong> {{ product.selling_price_carton }}</p>
+        <p><strong>Company:</strong> {{ product.company_name }}</p>
+        <p><strong>Current Available Cartons:</strong> {{ product.current_cartons }}</p>
+        <p><strong>Alarming Stock Level:</strong> {{ product.alarming_stock_level }}</p>
+    </div>
+
+    {% endfor %}
+    {% endblock %}

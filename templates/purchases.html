@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block username %}
+{{ username }}
+{% endblock %}
+
+{% block title %}
+{{ page_name|title }}
+{% endblock %}
+
+{% block header %}
+{{ page_name|upper }}
+{% endblock %}
+
+{% block quickbutton %}
+<button onclick="gotoAddPurchase('{{ session_id }}')" class="quickbutton">+ Add Purchase</button>
+{% endblock %}
+
+{% block main_cards %}
+
+{% for purchase in purchases %}
+<div class="card">
+    <div class="action-panel">
+        <span onclick="editPurchase('{{ purchase.purchase_id }}','{{ session_id }}')" class="edit-icon-item"></span>
+        <span onclick="deletePurchase('{{ purchase.purchase_id }}','{{ session_id }}')" class="delete-icon-item"></span>
+    </div>
+
+    <p><strong>Product:</strong> {{ purchase.product_name }}</p>
+    <p><strong>Pieces per Carton:</strong> {{ purchase.pieces_per_carton }}</p>
+    <p><strong>Price per Carton:</strong> {{ purchase.price_carton }}</p>
+    <p><strong>Company:</strong> {{ purchase.company_name }}</p>
+    <p><strong>Carton Purchased:</strong> {{ purchase.purchased_cartons }}</p>
+    <p><strong>Total Amount:</strong> {{ purchase.purchase_amount }}</p>
+    <p><strong>Dated:</strong> {{ purchase.purchase_date }}</p>
+</div>
+
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% block username %}
+{{username}}
+{% endblock %}
+
+{% block title %}
+{{page_name|title}}
+{% endblock %}
+
+{% block header %}
+{{page_name|upper}}
+{% endblock %}
+
+{% block main %}
+<script>document.addEventListener('DOMContentLoaded', function () {
+    const productDropdown = document.getElementById('product_id');
+    const cartonscount = document.getElementById('purchased_cartons');
+
+    const amount = document.getElementById('purchase_amount');
+
+    cartonscount.addEventListener('change', function () {
+        const selectedOption = productDropdown.options[productDropdown.selectedIndex];
+        const pricePerCarton = selectedOption.getAttribute('data-price');
+        amount.value = cartonscount.value * pricePerCarton;
+    });
+    productDropdown.addEventListener('change', function () {
+        const selectedOption = productDropdown.options[productDropdown.selectedIndex];
+        const pricePerCarton = selectedOption.getAttribute('data-price');
+        amount.value = cartonscount.value * pricePerCarton;
+    });
+});</script>
+<div class="form-container">
+    <form onsubmit="updatePurchase(event, '{{purchase_to_edit.purchase_id}}', '{{session_id}}')" method="post">
+
+        <div class="form-group">
+            <div class="combination">
+                <label for="product">Product:</label>
+                <select class="input-box" id="product_id" name="product_id" required>
+                    <option disabled>Select</option>
+                    {% for product in products %}
+
+                    <option value="{{product.product_id}}" data-price="{{product.price_carton}}" {% if
+                        product.product_id==purchase_to_edit.product_id %}selected{% else %}{% endif %}>{{
+                        product.product_name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="combination">
+                <label for="purchased_cartons">Purchased Cartons:</label>
+                <input type="number" class="input-box" id="purchased_cartons" name="purchased_cartons"
+                    value="{{purchase_to_edit.purchased_cartons}}" min="1">
+            </div>
+        </div>
+        <div class="form-group">
+
+            <div class="combination">
+                <label for="purchase_date">Date:</label>
+                <input type="date" class="input-box" id="purchase_date" name="purchase_date"
+                    value="{{purchase_to_edit.purchase_date}}" required>
+            </div>
+            <div class="combination">
+                <label for="purchase_amount">Price Total:</label>
+                <input type="number" class="input-box" id="purchase_amount" name="purchase_amount"
+                    value="{{purchase_to_edit.purchase_amount}}" placeholder="Enter Amount" required>
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <div class="combination">
+                <button type="submit">Update purchase</button>
+            </div>
+        </div>
+
+    </form>
+</div>
+{% endblock %}

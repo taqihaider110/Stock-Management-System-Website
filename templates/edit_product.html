@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% block username %}
+{{username}}
+{% endblock %}
+
+{% block title %}
+{{page_name|title}}
+{% endblock %}
+
+{% block header %}
+{{page_name|upper}}
+{% endblock %}
+
+{% block main %}
+<div class="form-container">
+    <form onsubmit="updateProduct(event, '{{product_to_edit.product_id}}', '{{session_id}}')" method="post">
+
+        <div class="form-group">
+            <div class="combination">
+                <label for="product_name">Product Name:</label>
+                <input type="text" class="input-box" id="product_name" name="product_name"
+                    placeholder="Enter Product's Name" value="{{product_to_edit.product_name}}" required>
+            </div>
+            <div class="combination">
+                <label for="company_id">Company:</label>
+                <select class="input-box" id="company_id" name="company_id" required>
+                    {% for company in companies %}
+                    <option value="{{ company.company_id }}" {% if company.company_id==product_to_edit.company_id %}
+                        selected {% endif %}>
+                        {{ company.company_name }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <div class="combination">
+                <label for="brand">Brand:</label>
+                <input type="text" class="input-box" id="brand" name="brand" placeholder="Enter Brand"
+                    value="{{product_to_edit.brand}}" required>
+            </div>
+            <div class="combination">
+                <label for="pieces_per_carton">Pieces per Carton:</label>
+                <input type="number" class="input-box" id="pieces_per_carton" name="pieces_per_carton"
+                    placeholder="Enter Pieces per Carton" value="{{product_to_edit.pieces_per_carton}}" required>
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <div class="combination">
+                <label for="price_carton">Price per Carton:</label>
+                <input type="number" step="0.01" class="input-box" id="price_carton" name="price_carton"
+                    placeholder="Enter Price per Carton" value="{{product_to_edit.price_carton}}" required>
+            </div>
+            <div class="combination">
+                <label for="selling_price_carton">Selling price per Carton:</label>
+                <input type="number" step="0.01" class="input-box" id="selling_price_carton" name="selling_price_carton"
+                    placeholder="Enter Selling price per Carton" value="{{product_to_edit.selling_price_carton}}"
+                    required>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="combination">
+                <label for="alarming_stock_level">Alarming Stock Level:</label>
+                <input type="number" class="input-box" id="alarming_stock_level" name="alarming_stock_level"
+                    placeholder="Enter Alarming stock Level" value="{{product_to_edit.alarming_stock_level }}" required>
+            </div>
+            <div class="combination">
+                <label for="purchase">Current Stock:</label>
+                <input type="number" class="input-box" id="current_cartons" name="purchase"
+                    value="{{product_to_edit.current_cartons }}" disabled>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="combination">
+                <button type="submit">Update Product</button>
+            </div>
+        </div>
+
+    </form>
+</div>
+{% endblock %}

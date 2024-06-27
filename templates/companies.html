@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block username %}
+{{username}}
+{% endblock %}
+
+{% block title %}
+{{page_name|title}}
+{% endblock %}
+
+
+
+
+{% block header %} {{page_name|upper}} {% endblock %}
+
+{% block quickbutton %} <button onclick="gotoAddCompany('{{session_id}}')" class="quickbutton">+ Add Company</button>{%
+endblock %}
+
+
+{% block main_cards %}
+
+{% for company in companies %}
+
+
+<div class="card">
+    <div class="action-panel"><span onclick="editCompany('{{company.company_id}}','{{session_id}}')"
+            class="edit-icon-item"></span>
+        <span onclick="deleteCompany('{{company.company_id}}','{{session_id}}')" class="delete-icon-item"></span>
+    </div>
+
+    <h2> {{ company.company_name }}</h2>
+    <p><strong>Representative:</strong> {{ company.company_representative }}</p>
+    <p><strong>Contact:</strong> {{ company.contact }}</p>
+    <p><strong>Address:</strong> {{ company.address }}</p>
+
+
+</div>
+
+
+{% endfor %}
+{% endblock %}

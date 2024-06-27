@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>
+        {% block title %}
+        {% endblock %}
+    </title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<style>
+    .container {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 50%;
+    }
+
+    table,
+    th,
+    td {
+        border: 1px solid black;
+    }
+
+    form {
+        width: 40%;
+    }
+
+    form label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    form input {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+    }
+
+    form button {
+        padding: 10px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+</style>
+
+<body>
+    <div class="grid-container">
+
+        <header class="header">
+            <div class="menu-icon" onclick="openSidebar()">
+                <span class="material-icons-outlined">menu</span>
+            </div>
+            <div style="color: #ffffff; margin: 10px 25px;" class="main-title">
+
+                <p style="font-size: 30px;" class="font-weight-bold">
+                    <span onclick="goBack()" style="margin-right: 20px;"
+                        class="material-icons-outlined">arrow_back</span>
+                    {% block header %} {% endblock %}
+                </p>
+            </div>
+            <div style="position: absolute;right: 50px;color: white; border-radius: 5px;padding: 10px 15px;">
+                <span class="material-icons-outlined">account_circle</span>
+                {% block username %}{% endblock %}
+            </div>
+        </header>
+
+        <aside id="sidebar">
+
+            <div class="sidebar-title">
+                <div class="sidebar-brand">
+                    <span class="material-icons-outlined">inventory</span> Inventory
+                </div>
+                <span class="material-icons-outlined" onclick="closeSidebar()">close</span>
+            </div>
+            <ul class="sidebar-list">
+                <!-- {% block sidebaritem %} -->
+                <li onclick="gotoDashboard('{{session_id}}')" class="sidebar-list-item">
+                    <span class="material-icons-outlined">dashboard</span> Dashboard
+                </li>
+
+                <li onclick="gotoCompanies('{{session_id}}')" class="sidebar-list-item">
+                    <span class="material-icons-outlined">storefront</span> Companies
+                </li>
+
+                <li onclick="gotoClients('{{session_id}}')" class="sidebar-list-item">
+                    <span class="material-icons-outlined">storefront</span> Clients
+                </li>
+
+                <li onclick="gotoProducts('{{session_id}}')" class="sidebar-list-item">
+                    <span class="material-icons-outlined">storefront</span> Products
+                </li>
+
+                <li onclick="gotoPurchases('{{session_id}}')" class="sidebar-list-item">
+                    <span class="material-icons-outlined">storefront</span> Purchases
+                </li>
+
+                <li onclick="gotoSales('{{session_id}}')" class="sidebar-list-item">
+                    <span class="material-icons-outlined">storefront</span> Sales
+                </li>
+
+                <!-- {% endblock %} -->
+                <li onclick="logout('{{session_id}}')" class="sidebar-list-item">
+                    <span class="material-icons-outlined">logout</span> Logout
+                </li>
+            </ul>
+        </aside>
+
+        <main class="main-container">
+            {% block quickbutton %}
+            {% endblock%}
+
+            {% block main %}
+            {% endblock %}
+
+
+            <div class="main-cards">
+                {% block main_cards %}
+                {% endblock %}
+            </div>
+
+            <div class="charts">
+                {% block charts %}
+                {% endblock %}
+            </div>
+
+        </main>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.35.3/apexcharts.min.js"></script>
+
+    <script src="../static/js/app.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block username %}
+{{ username }}
+{% endblock %}
+
+{% block title %}
+{{ page_name|title }}
+{% endblock %}
+
+{% block header %}
+{{ page_name|upper }}
+{% endblock %}
+
+{% block quickbutton %}
+<button onclick="gotoAddSales('{{ session_id }}')" class="quickbutton">+ Add Sale</button>
+{% endblock %}
+
+{% block main_cards %}
+
+{% for sale in sales %}
+
+<div class="card">
+    <div class="action-panel">
+        <span onclick="editSales('{{ sale.sale_id }}','{{ session_id }}')" class="edit-icon-item"></span>
+        <span onclick="deleteSales('{{ sale.sale_id }}','{{ session_id }}')" class="delete-icon-item"></span>
+    </div>
+
+    <h2>{{ sale.product_name }}</h2>
+    <p><strong>Sold To:</strong> {{ sale.client_name }}</p>
+    <p><strong>Sold Cartons:</strong> {{ sale.quantity_sold_cartons }}</p>
+    <p><strong>Price Per Carton:</strong> {{ sale.selling_price_carton }}</p>
+    <p><strong>Total Value:</strong> {{ sale.sale_total }}</p>
+    <p><strong>Date:</strong> {{ sale.sold_date }}</p>
+</div>
+
+
+{% endfor %}
+{% endblock %}

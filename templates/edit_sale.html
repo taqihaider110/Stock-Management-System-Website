@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+
+{% block username %}
+{{ username }}
+{% endblock %}
+
+{% block title %}
+{{ page_name|title }}
+{% endblock %}
+
+{% block header %}
+{{ page_name|upper }}
+{% endblock %}
+
+{% block main %}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const productDropdown = document.getElementById('product_id');
+        const cartonsCount = document.getElementById('quantity_sold_cartons');
+        const sellingPriceInput = document.getElementById('selling_price_per_carton');
+        const sales_total = document.getElementById('sale_total');
+
+        productDropdown.addEventListener('change', function () {
+            const selectedOption = productDropdown.options[productDropdown.selectedIndex];
+            const pricePerCarton = selectedOption.getAttribute('data-price');
+            const quantity = parseInt(cartonsCount.value);
+            sellingPriceInput.value = pricePerCarton;
+            if (!isNaN(pricePerCarton) && !isNaN(quantity)) {
+                sales_total.value = (pricePerCarton * quantity).toFixed(2);
+            }
+        });
+
+        cartonsCount.addEventListener('input', function () {
+            const selectedOption = productDropdown.options[productDropdown.selectedIndex];
+            const pricePerCarton = sellingPriceInput.value;
+            const quantity = parseInt(cartonsCount.value);
+            if (!isNaN(pricePerCarton) && !isNaN(quantity)) {
+                sales_total.value = (pricePerCarton * quantity).toFixed(2);
+            }
+        });
+
+
+        sellingPriceInput.addEventListener('input', function () {
+
+            const selectedOption = productDropdown.options[productDropdown.selectedIndex];
+            const pricePerCarton = sellingPriceInput.value;
+            const quantity = parseInt(cartonsCount.value);
+            if (!isNaN(pricePerCarton) && !isNaN(quantity)) {
+                sales_total.value = (pricePerCarton * quantity).toFixed(2);
+            }
+            else {
+                console.log("There is an error");
+            }
+        })
+
+
+    });
+</script>
+
+
+<div class="form-container">
+    <form onsubmit="updateSales(event, '{{ sale_to_edit.sale_id }}', '{{ session_id }}')" method="post">
+
+        <div class="form-group">
+            <div class="combination">
+                <label for="product">Product Name:</label>
+                <select class="input-box" id="product_id" name="product_id" required>
+                    <option selected disabled>Select</option>
+                    {% for product in products %}
+                    <option value="{{product.product_id}}" data-price="{{product.selling_price_carton}}" {% if
+                        product.product_id==sale_to_edit.product_id %}selected{% else %}{% endif %}>
+                        {{product.product_name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="combination">
+                <label for="client">Customer:</label>
+                <select class="input-box" id="client_id" name="client_id" required>
+                    <option selected disabled>Select</option>
+                    {% for client in clients %}
+                    <option value="{{client.client_id}}" {% if client.client_id==sale_to_edit.client_id %}selected{%
+                        else %}{% endif %}>{{
+                        client.client_name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="combination">
+                <label for="quantity_sold_cartons">Quantity Sold (Cartons):</label>
+                <input type="number" class="input-box" id="quantity_sold_cartons" name="quantity_sold_cartons"
+                    value="{{sale_to_edit.quantity_sold_cartons}}" min="1">
+            </div>
+
+            <div class="combination">
+                <label for="selling_price_per_carton">Selling Price per Carton:</label>
+                <input type="number" class="input-box" id="selling_price_per_carton" name="selling_price_per_carton"
+                    value="{{sale_to_edit.selling_price_carton}}" min="1">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="combination">
+                <label for="sold_date">Date:</label>
+                <input type="date" class="input-box" id="sold_date" name="sold_date" value="{{sale_to_edit.sold_date}}"
+                    required>
+            </div>
+
+            <div class="combination">
+                <label for="sale_total">Total Amount:</label>
+                <input type="number" class="input-box" id="sale_total" name="sale_total"
+                    value="{{sale_to_edit.sale_total}}" required>
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <div class="combination">
+                <button type="submit">Update Sale</button>
+            </div>
+        </div>
+
+    </form>
+</div>
+{% endblock %}

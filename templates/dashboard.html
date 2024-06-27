@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block username %}
+{{username}}
+{% endblock %}
+
+{% block title %}
+{{page_name|title}}
+{% endblock %}
+
+
+
+{% block header %}
+{{page_name|upper}}
+{% endblock %}
+
+{% block main_cards %}
+
+<div class="card">
+    <div class="card-inner">
+        <p class="text-primary">PRODUCTS</p>
+        <span class="material-icons-outlined text-blue">inventory_2</span>
+    </div>
+    <span class="text-primary font-weight-bold">{{ product_count }}</span>
+</div>
+
+<div class="card">
+    <div class="card-inner">
+        <p class="text-primary">PURCHASE ORDERS</p>
+        <span class="material-icons-outlined text-orange">add_shopping_cart</span>
+    </div>
+    <span class="text-primary font-weight-bold">{{ purchase_count }}</span>
+</div>
+
+<div class="card">
+    <div class="card-inner">
+        <p class="text-primary">SALES ORDERS</p>
+        <span class="material-icons-outlined text-green">shopping_cart</span>
+    </div>
+    <span class="text-primary font-weight-bold">{{ sales_count }}</span>
+</div>
+
+<div class="card">
+    <div class="card-inner">
+        <p class="text-primary">INVENTORY ALERTS</p>
+        <span class="material-icons-outlined text-red">notification_important</span>
+    </div>
+    <span class="text-primary font-weight-bold">{{alarming_alerts_count}}</span>
+</div>
+
+{% endblock %}
+
+{% block charts %}
+
+<div class="charts-card">
+    <p class="chart-title">Top 5 Products</p>
+    <div id="bar-chart"></div>
+</div>
+
+<div class="charts-card">
+    <p class="chart-title">Purchase and Sales Orders</p>
+    <div id="area-chart"></div>
+</div>
+{% endblock %}
