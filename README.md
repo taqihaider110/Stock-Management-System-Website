@@ -70,40 +70,40 @@ The Basic Stock Management System is a Python-based software application aimed a
 ## Login Page
 **Description:** The login page serves as the entry point to the Stock Management System, providing secure access to authorized users.
 
-`![LOGIN](https://github.com/user-attachments/assets/be6f56fe-3da3-46c9-b3ae-277ec1cdb7df)`
+![LOGIN](https://github.com/user-attachments/assets/be6f56fe-3da3-46c9-b3ae-277ec1cdb7df)
 
 ## Dashboard
 **Description:** The dashboard provides an overview of the system, displaying key metrics and recent activities. It offers quick access to different modules and summarizes important information.
 
-`![DASHBOARD](https://github.com/user-attachments/assets/0de36ebd-efa2-4932-91d5-275f5c48b995)`
+![DASHBOARD](https://github.com/user-attachments/assets/0de36ebd-efa2-4932-91d5-275f5c48b995)
 
 ## Companies
 **Description:** The companies module allows management of company profiles, including addition, editing, and deletion functionalities.
 
-`![COMPANIES](https://github.com/user-attachments/assets/b4cbb134-303f-422d-ba01-8bd96ec87cd1)`
+![COMPANIES](https://github.com/user-attachments/assets/b4cbb134-303f-422d-ba01-8bd96ec87cd1)
 
 ## Clients
 **Description:** The clients module facilitates management of client information, enabling operations such as client addition, editing, and removal.
 
-`![CLIENTS](https://github.com/user-attachments/assets/5f834b01-f042-4db6-a6cf-b8f6cf772bb4)`
+![CLIENTS](https://github.com/user-attachments/assets/5f834b01-f042-4db6-a6cf-b8f6cf772bb4)
 
 ## Products
 **Description:** The products module enables inventory management by providing tools for adding, updating, and deleting product details.
 
-`![PRODUCTS](https://github.com/user-attachments/assets/cfc27ba3-2ab9-4143-95aa-f7d09d1dcbd3)`
+![PRODUCTS](https://github.com/user-attachments/assets/cfc27ba3-2ab9-4143-95aa-f7d09d1dcbd3)
 
 ## Purchases
 **Description:** The purchases module records and manages transactions with suppliers, ensuring accurate tracking of procurement activities.
 
-`![PURCHASES](https://github.com/user-attachments/assets/9104f8ea-39bb-40af-b988-f6466e7cb3f7)`
+![PURCHASES](https://github.com/user-attachments/assets/9104f8ea-39bb-40af-b988-f6466e7cb3f7)
 
 ## Sales
 **Description:** The sales module tracks sales transactions, including customer details, product sales, and invoice generation.
 
-`![SALES](https://github.com/user-attachments/assets/828ed5f5-1a7c-4294-a384-301c66baba22)`
+![SALES](https://github.com/user-attachments/assets/828ed5f5-1a7c-4294-a384-301c66baba22)
 
 ## Logout
 **Description:** The logout feature securely terminates user sessions, ensuring data security and user privacy.
 
-`![LOGOUT POPUP](https://github.com/user-attachments/assets/2606b75f-f778-4433-9e35-c39f9537a211)`
+![LOGOUT POPUP](https://github.com/user-attachments/assets/2606b75f-f778-4433-9e35-c39f9537a211)
 
