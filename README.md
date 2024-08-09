@@ -1,7 +1,3 @@
-Here's a structured README for your GitHub repository:
-
----
-
 # Stock Management System
 
 ## Introduction
