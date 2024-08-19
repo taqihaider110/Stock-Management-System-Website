@@ -1,0 +1,6 @@
+Flask==3.0.3
+Flask-SQLAlchemy==3.1.1
+sql==2022.4.0
+SQLAlchemy==2.0.32
+python==3.12.4
+
